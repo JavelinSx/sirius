@@ -3,13 +3,13 @@ import { createAppSlice } from "@/src/lib/createAppSlice";
 
 
 interface AuthState{
-    login: string;
+    Email: string;
     password: string;
     rememberMe: boolean;
 }
 
 const initialState: AuthState = {
-    login: '',
+    Email: '',
     password: '',
     rememberMe: false
 }
@@ -18,9 +18,9 @@ export const authSlice = createAppSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setLogin(state,action: PayloadAction<string>){
+        setEmail(state,action: PayloadAction<string>){
 
-            state.login = action.payload
+            state.Email = action.payload
         },
         setPassword(state,action: PayloadAction<string>){
 
@@ -31,17 +31,17 @@ export const authSlice = createAppSlice({
             state.rememberMe = action.payload
         },
         resetCredentials(state){
-            state.login = ''
+            state.Email = ''
             state.password = ''
         },
 
     },
     selectors: {
-        selectLogin: (auth) => auth.login,
+        selectEmail: (auth) => auth.Email,
         selectPassword: (auth) => auth.password,
         selectRememberMe: (auth) => auth.rememberMe
     }
 })
 
-export const { setLogin, setPassword, setRememberMe, resetCredentials}  = authSlice.actions;
-export const {selectLogin, selectPassword, selectRememberMe} = authSlice.selectors;
+export const { setEmail, setPassword, setRememberMe, resetCredentials}  = authSlice.actions;
+export const {selectEmail, selectPassword, selectRememberMe} = authSlice.selectors;

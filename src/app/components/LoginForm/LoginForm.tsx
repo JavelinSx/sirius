@@ -7,10 +7,10 @@ import { Button } from '../ui/Button/Button';
 import { AccessoryAuthLink } from '../AccessoryAuthLink/AccessoryAuthLink';
 import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
 import {
-  selectLogin,
+  selectEmail,
   selectPassword,
   selectRememberMe,
-  setLogin,
+  setEmail,
   setPassword,
   setRememberMe,
 } from '@/src/lib/features/auth/authSlice';
@@ -23,14 +23,6 @@ interface LoginFormProps {
 export const LoginForm: FC<LoginFormProps> = ({ isButtonDisabled, onSubmit }) => {
   const dispatch = useAppDispatch();
 
-  const handleLoginChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setLogin(e.target.value));
-  }, []);
-
-  const handlePasswordChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPassword(e.target.value));
-  }, []);
-
   const handleCheckboxChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setRememberMe(e.target.checked));
   }, []);
@@ -38,8 +30,8 @@ export const LoginForm: FC<LoginFormProps> = ({ isButtonDisabled, onSubmit }) =>
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.inputContainer}>
-        <Input type='email' name='email' placeholder='E-mail' required={true} onChange={handleLoginChange} />
-        <Input type='password' name='password' placeholder='Password' required={true} onChange={handlePasswordChange} />
+        <Input type='email' name='email' placeholder='E-mail' required={true} />
+        <Input type='password' name='password' placeholder='Password' required={true} />
         <Checkbox label='Запомнить меня' onChange={handleCheckboxChange} />
       </div>
       <div>

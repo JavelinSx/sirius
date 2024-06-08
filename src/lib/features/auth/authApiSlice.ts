@@ -5,7 +5,7 @@ interface LoginResponse {
 }
 
 interface LoginRequest {
-  login: string;
+  email: string;
   password: string;
   rememberMe: boolean;
 }
@@ -14,7 +14,7 @@ export const authApiSlice = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
   endpoints: (builder) => ({
-    login: builder.mutation<LoginResponse, LoginRequest>({
+    email: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
         url: 'auth',
         method: 'POST',
@@ -30,4 +30,4 @@ export const authApiSlice = createApi({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = authApiSlice;
+export const { useEmailMutation, useLogoutMutation } = authApiSlice;
