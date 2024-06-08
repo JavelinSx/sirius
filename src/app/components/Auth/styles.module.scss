@@ -1,0 +1,9 @@
+.title {
+  @apply text-4.5xl leading-leading-8.5;
+}
+.logo {
+  @apply pb-8;
+}
+.container {
+  @apply w-full h-screen flex flex-col items-center justify-center;
+}

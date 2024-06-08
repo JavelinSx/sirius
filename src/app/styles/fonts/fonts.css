@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Circle-Rounded';
+  src: url('./CirceRounded-Regular.woff2') format('woff2');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Circle-Rounded-Light';
+  src: url('./CirceRounded-ExtraLight.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Circle-Rounded-Bold';
+  src: url('./CirceRounded-AltBold.woff2') format('woff2');
+  font-weight: bold;
+}

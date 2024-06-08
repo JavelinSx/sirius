@@ -1,0 +1,11 @@
+.button {
+  width: 339px;
+  height: 48px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  &:disabled {
+    @apply bg-violet-200 cursor-not-allowed;
+  }
+  @apply bg-violet-400 text-white;
+}

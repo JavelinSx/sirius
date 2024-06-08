@@ -1,0 +1,6 @@
+.form {
+  @apply bg-white flex flex-col justify-between;
+}
+.inputContainer {
+  @apply flex flex-col pt-4 pb-8;
+}
