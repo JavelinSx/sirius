@@ -1,0 +1,12 @@
+.localesContainer {
+  @apply mt-24 absolute bottom-9;
+}
+.localeSwitcherList {
+  @apply flex flex-row justify-between items-center w-full h-6 gap-2;
+}
+.localeItem {
+  @apply text-grey-600 text-base cursor-pointer transition;
+}
+.localeItemActive {
+  @apply text-darkBlue text-2xl;
+}

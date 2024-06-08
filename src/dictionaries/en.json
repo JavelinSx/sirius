@@ -1,0 +1,68 @@
+{
+  "authCoach": {
+    "title": "Auth Coach",
+    "description": "Authentication for coaches.",
+    "loginButton": "Login",
+    "registerButton": "Register"
+  },
+  "auth": {
+    "title": "Login to Sirius Future",
+    "loginFailed": "Failed to login",
+    "forgotPassword": "I forgot my password",
+    "loginAsCoach": "Login as a coach",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "email": "E-mail",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "login": "Login"
+  },
+  "dashboard": {
+    "achievement": {
+      "title": "Achievements",
+      "description": "Your achievements"
+    },
+    "checkConnection": {
+      "title": "Check Connection",
+      "description": "Check your internet connection"
+    },
+    "home": {
+      "title": "Home",
+      "welcomeMessage": "Welcome to your dashboard"
+    },
+    "library": {
+      "title": "Library",
+      "description": "Your personal library"
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "Manage your payments"
+    },
+    "questions": {
+      "title": "Questions",
+      "description": "Frequently asked questions"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Manage your settings"
+    },
+    "schedule": {
+      "title": "Schedule",
+      "description": "Your schedule"
+    },
+    "training": {
+      "title": "Training",
+      "description": "Your training sessions"
+    }
+  },
+  "register": {
+    "title": "Register",
+    "description": "Create a new account",
+    "registerButton": "Register"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "description": "Reset your password",
+    "resetButton": "Reset"
+  }
+}

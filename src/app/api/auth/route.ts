@@ -6,6 +6,7 @@ export async function POST(request:NextRequest) {
     const {email, password, rememberMe} = body
 
     await new Promise((resolve) => setTimeout(resolve, 1000))
+
     if(email==='test@mail.ru' && password==='test'){
         const response = NextResponse.json({message: 'Login success'}, {status: 200})
         response.cookies.set('currentUser', 'test', { httpOnly: true, path: '/', maxAge: rememberMe ?  60 * 60 * 24 * 7 : 60 * 60 });

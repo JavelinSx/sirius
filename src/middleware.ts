@@ -1,26 +1,36 @@
-import type { NextRequest } from 'next/server'
- 
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { i18n } from "@/i18n-config";
+
 export function middleware(request: NextRequest) {
-  const currentUser = request.cookies.get('currentUser')?.value
-  // если пользователь существует, и путь начинается с дашборда, то посылаем его туда
-  if (currentUser && !request.nextUrl.pathname.startsWith('/dashboard')) {
-    return Response.redirect(new URL('/dashboard', request.url))
+  const pathname = request.nextUrl.pathname;
+
+  // Разбиваем путь на части для извлечения локали
+  const pathnameParts = pathname.split('/');
+  const locale = pathnameParts[1];
+
+  // Убираем локаль из пути для проверки маршрутов
+  const pathnameWithoutLocale = `/${pathnameParts.slice(2).join('/')}`;
+
+  // Пример проверки текущего пользователя и перенаправления
+  const currentUser = request.cookies.get('currentUser')?.value;
+
+  if (currentUser && !pathnameWithoutLocale.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
   }
-  if (!currentUser && request.nextUrl.pathname.startsWith('/reset-password')) {
-    return Response.redirect(new URL('/reset-password', request.url))
+
+  if (!currentUser && (pathnameWithoutLocale.startsWith('/reset-password') || pathnameWithoutLocale.startsWith('/auth-coach') || pathnameWithoutLocale.startsWith('/register'))) {
+    return NextResponse.next();
   }
-  if (!currentUser && request.nextUrl.pathname.startsWith('/auth-coach')) {
-    return Response.redirect(new URL('/auth-coach', request.url))
+
+  if (!currentUser && pathnameWithoutLocale !== '/') {
+    return NextResponse.redirect(new URL(`/${locale}/`, request.url));
   }
-  if (!currentUser && request.nextUrl.pathname.startsWith('/register')) {
-    return Response.redirect(new URL('/register', request.url))
-  }
-  // если пользователя не существует, то посылаем его на логин
-  if (!currentUser) {
-    return Response.redirect(new URL('/', request.url))
-  }
+
+  // Разрешаем запрос, если все проверки пройдены
+  return NextResponse.next();
 }
- 
+
 export const config = {
-  matcher: ['/dashboard/:path*'],
-}
+  matcher: ["/:locale((?!api|_next/static|_next/image|favicon.ico).*)"],
+};

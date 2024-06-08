@@ -5,5 +5,5 @@
   @apply pb-8;
 }
 .container {
-  @apply w-full h-screen flex flex-col items-center justify-center;
+  @apply w-full h-screen flex flex-col items-center justify-center relative;
 }

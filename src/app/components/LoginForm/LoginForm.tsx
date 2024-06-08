@@ -14,6 +14,7 @@ import {
   setPassword,
   setRememberMe,
 } from '@/src/lib/features/auth/authSlice';
+import { selectDictionary } from '@/src/lib/features/appSlice';
 
 interface LoginFormProps {
   isButtonDisabled: boolean;
@@ -21,21 +22,25 @@ interface LoginFormProps {
 }
 
 export const LoginForm: FC<LoginFormProps> = ({ isButtonDisabled, onSubmit }) => {
+  const dictionary = useAppSelector(selectDictionary);
   const dispatch = useAppDispatch();
 
-  const handleCheckboxChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setRememberMe(e.target.checked));
-  }, []);
+  const handleCheckboxChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(setRememberMe(e.target.checked));
+    },
+    [dispatch]
+  );
 
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div className={styles.inputContainer}>
-        <Input type='email' name='email' placeholder='E-mail' required={true} />
-        <Input type='password' name='password' placeholder='Password' required={true} />
-        <Checkbox label='Запомнить меня' onChange={handleCheckboxChange} />
+        <Input type='email' name='email' placeholder={dictionary.auth.email} required={true} />
+        <Input type='password' name='password' placeholder={dictionary.auth.password} required={true} />
+        <Checkbox label={dictionary.auth.rememberMe} onChange={handleCheckboxChange} />
       </div>
       <div>
-        <Button type='submit' text='Войти' status={isButtonDisabled} />
+        <Button type='submit' text={dictionary.auth.login} status={isButtonDisabled} />
         <AccessoryAuthLink />
       </div>
     </form>

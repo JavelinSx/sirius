@@ -1,0 +1,68 @@
+{
+  "authCoach": {
+    "title": "Авторизация Тренера",
+    "description": "Авторизация для тренеров.",
+    "loginButton": "Войти",
+    "registerButton": "Регистрация"
+  },
+  "auth": {
+    "title": "Вход в Sirius Future",
+    "loginFailed": "Не удалось войти",
+    "forgotPassword": "Я забыл пароль",
+    "loginAsCoach": "Войти как тренер",
+    "noAccount": "Нет аккаунта?",
+    "register": "Зарегистрироваться",
+    "email": "E-mail",
+    "password": "Пароль",
+    "rememberMe": "Запомнить меня",
+    "login": "Войти"
+  },
+  "dashboard": {
+    "achievement": {
+      "title": "Достижения",
+      "description": "Ваши достижения"
+    },
+    "checkConnection": {
+      "title": "Проверка соединения",
+      "description": "Проверьте ваше интернет-соединение"
+    },
+    "home": {
+      "title": "Главная",
+      "welcomeMessage": "Добро пожаловать в ваш кабинет"
+    },
+    "library": {
+      "title": "Библиотека",
+      "description": "Ваша личная библиотека"
+    },
+    "payment": {
+      "title": "Оплата",
+      "description": "Управление вашими платежами"
+    },
+    "questions": {
+      "title": "Вопросы",
+      "description": "Часто задаваемые вопросы"
+    },
+    "settings": {
+      "title": "Настройки",
+      "description": "Управление вашими настройками"
+    },
+    "schedule": {
+      "title": "Расписание",
+      "description": "Ваше расписание"
+    },
+    "training": {
+      "title": "Тренировки",
+      "description": "Ваши тренировочные сессии"
+    }
+  },
+  "register": {
+    "title": "Регистрация",
+    "description": "Создание нового аккаунта",
+    "registerButton": "Зарегистрироваться"
+  },
+  "resetPassword": {
+    "title": "Сброс пароля",
+    "description": "Сбросьте ваш пароль",
+    "resetButton": "Сбросить"
+  }
+}
