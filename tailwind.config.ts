@@ -15,19 +15,23 @@ const config: Config = {
       inherit: colors.inherit,
       white: colors.white,
       black: colors.black,
-      grey: {
+      gray: {
         50: '#FDFDFF',
         200: '#ECECEC',
         400: '#C8C5CD',
         600: '#79747F',
-        800: '#323854'
       },
       violet:{
         100: '#eeeeff',
         200: '#decfff',
         400: '#8d7fc7',
       },
-      darkBlue: '#008aff'
+      blue: {
+        200: '#D8ECFF',
+        400: '#008aff',
+        600: '#434B74',
+        800: '#323854',
+      }
     },
     extend: {
       fontSize: {
@@ -35,7 +39,16 @@ const config: Config = {
       },
       lineHeight:{
         'leading-8.5': '35px'
-      }
+      },
+      borderRadius:{
+        'dashboard': '30px'
+      },
+      boxShadow: {
+        'custom-button': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Пример кастомного box-shadow
+      },
+      transitionDuration: {
+        DEFAULT: '300ms', // Заменяем стандартное значение transition-duration
+      },
     },
   },
   plugins: [],

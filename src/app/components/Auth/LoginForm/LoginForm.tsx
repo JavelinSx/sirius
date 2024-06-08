@@ -1,9 +1,9 @@
 'use client';
 import { ChangeEvent, FormEvent, FC, useCallback } from 'react';
 import styles from './styles.module.scss';
-import { Input } from '../ui/Input/Input';
-import { Checkbox } from '../ui/Checkbox/Checkbox';
-import { Button } from '../ui/Button/Button';
+import { Input } from '../../ui/Input/Input';
+import { Checkbox } from '../../ui/Checkbox/Checkbox';
+import { Button } from '../../ui/Button/Button';
 import { AccessoryAuthLink } from '../AccessoryAuthLink/AccessoryAuthLink';
 import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
 import {

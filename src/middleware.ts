@@ -1,36 +1,33 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { i18n } from "@/i18n-config";
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Разбиваем путь на части для извлечения локали
-  const pathnameParts = pathname.split('/');
-  const locale = pathnameParts[1];
-
-  // Убираем локаль из пути для проверки маршрутов
-  const pathnameWithoutLocale = `/${pathnameParts.slice(2).join('/')}`;
-
-  // Пример проверки текущего пользователя и перенаправления
+  // Get the current user from the cookies
   const currentUser = request.cookies.get('currentUser')?.value;
 
-  if (currentUser && !pathnameWithoutLocale.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
-  }
+  // Allow access to certain paths if the user is not logged in
+  const publicPaths = ['/reset-password', '/auth-coach', '/register'];
+  const isPublicPath = publicPaths.some(path => pathname.startsWith(path));
 
-  if (!currentUser && (pathnameWithoutLocale.startsWith('/reset-password') || pathnameWithoutLocale.startsWith('/auth-coach') || pathnameWithoutLocale.startsWith('/register'))) {
+  if (isPublicPath) {
     return NextResponse.next();
   }
 
-  if (!currentUser && pathnameWithoutLocale !== '/') {
-    return NextResponse.redirect(new URL(`/${locale}/`, request.url));
+  // If the user is logged in and not on the dashboard, redirect to the dashboard
+  if (currentUser && !pathname.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL(`/dashboard`, request.url));
   }
 
-  // Разрешаем запрос, если все проверки пройдены
+  // Proceed without redirection if the user is not logged in
+  if (!currentUser) {
+    return NextResponse.next();
+  }
+  // Allow other requests to proceed
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/:locale((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
 };

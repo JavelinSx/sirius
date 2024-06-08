@@ -10,7 +10,7 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({ type, status, text }) => {
   return (
-    <button className={styles.button} disabled={status} type={type}>
+    <button className={styles.button} disabled={status} type={type} style={}>
       {text}
     </button>
   );

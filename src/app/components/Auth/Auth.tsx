@@ -6,10 +6,10 @@ import { useEmailMutation } from '@/src/lib/features/auth/authApiSlice';
 import styles from './styles.module.scss';
 import logo from '@/public/logo.png';
 import Image from 'next/image';
-import { LoginForm } from '../LoginForm/LoginForm';
+import { LoginForm } from './LoginForm/LoginForm';
 import { selectEmail, selectPassword, selectRememberMe } from '@/src/lib/features/auth/authSlice';
 import React from 'react';
-import { LocaleSwitcher } from '../LocaleSwitcher/LocaleSwitcher';
+import { LocaleSwitcher } from './LocaleSwitcher/LocaleSwitcher';
 import { useTranslation } from 'next-i18next';
 import { useAppSelector } from '@/src/lib/hooks';
 import { selectDictionary } from '@/src/lib/features/appSlice';
@@ -28,7 +28,6 @@ export const Auth: FC = () => {
       e.preventDefault();
       try {
         await loginMutation({ email, password, rememberMe }).unwrap();
-        router.replace('/dashboard');
       } catch (err) {
         if (err instanceof Error) {
           console.error(dictionary.auth.loginFailed, err.message);
