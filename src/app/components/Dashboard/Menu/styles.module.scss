@@ -1,9 +1,7 @@
 .menuContainer {
-  @apply bg-violet-100 rounded-dashboard flex flex-col items-center;
+  @apply bg-violet-100 rounded-dashboard flex flex-col items-center max-w-[236px] max-h-[704px] mt-6;
 
   .logo {
-    width: 144px;
-    height: 58px;
     @apply mt-11 mb-9;
   }
 
@@ -11,34 +9,38 @@
     @apply pr-5;
 
     .menuItem {
-      width: 216px;
-
       &:hover {
         @apply bg-violet-400 rounded-r-3xl;
         .link {
           @apply text-white;
         }
+        .icon {
+          color: white;
+        }
       }
-
-      @apply pl-11 pt-2 pb-2 flex flex-row rounded-r-3xl transition cursor-pointer;
-
       .icon {
+        color: #434b74;
+        path {
+          stroke: currentColor;
+        }
         @apply w-6 h-6 mr-2;
       }
 
       .link {
-        @apply text-base text-blue-600;
+        @apply flex flex-row text-base text-blue-600 w-[216px] pl-11 pt-2 pb-2 rounded-r-3xl transition cursor-pointer;
       }
-
-      &.menuItemActive {
+      &.active {
         @apply bg-violet-400 rounded-r-3xl;
-
         .link {
           @apply text-white;
+        }
+        .icon {
+          color: white;
         }
       }
     }
   }
+
   .containerReferal {
     @apply overflow-hidden relative max-w-[196px] max-h-[128px] mt-[50px] mb-[24px] p-[16px] rounded-[15px] flex flex-col items-center bg-gray-50;
 

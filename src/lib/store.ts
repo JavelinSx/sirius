@@ -1,37 +1,36 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit";
-import { combineSlices, configureStore } from "@reduxjs/toolkit";
-import { authApiSlice } from "./features/auth/authApiSlice";
-import {authSlice} from './features/auth/authSlice'
-import {appSlice} from './features/appSlice'
-// `combineSlices` automatically combines the reducers using
-// their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(authApiSlice, authSlice, appSlice);
+import { configureStore, combineReducers, Action, ThunkAction } from '@reduxjs/toolkit';
+import { authApiSlice } from './features/auth/authApiSlice';
+import { appSlice } from './features/appSlice';
+import { usersSlice } from './features/users/usersSlice';
+import { save, load } from 'redux-localstorage-simple';
 
-// Infer the `RootState` type from the root reducer
+// Комбинируем редюсеры
+const rootReducer = combineReducers({
+  [authApiSlice.reducerPath]: authApiSlice.reducer,
+  [appSlice.name]: appSlice.reducer,
+  [usersSlice.name]: usersSlice.reducer,
+});
+
+// Тип состояния корневого редюсера
 export type RootState = ReturnType<typeof rootReducer>;
 
-// `makeStore` encapsulates the store configuration to allow
-// creating unique store instances, which is particularly important for
-// server-side rendering (SSR) scenarios. In SSR, separate store instances
-// are needed for each request to prevent cross-request state pollution.
+// Функция для создания store с middleware для сохранения в localStorage
 export const makeStore = () => {
   return configureStore({
     reducer: rootReducer,
-    // Adding the api middleware enables caching, invalidation, polling,
-    // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(authApiSlice.middleware);
+      return getDefaultMiddleware({
+        serializableCheck: false,
+      }).concat(authApiSlice.middleware, save({ states: ['users', 'app'] }));
     },
+    preloadedState: load({ states: ['users', 'app'] }), // Загружаем состояние из localStorage
   });
 };
 
-// Infer the return type of `makeStore`
-export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `AppDispatch` type from the store itself
-export type AppDispatch = AppStore["dispatch"];
-export type AppThunk<ThunkReturnType = void> = ThunkAction<
-  ThunkReturnType,
-  RootState,
-  unknown,
-  Action
->;
+const store = makeStore();
+
+export { store };
+
+export type AppStore = typeof store;
+export type AppDispatch = AppStore['dispatch'];
+export type AppThunk<ThunkReturnType = void> = ThunkAction<ThunkReturnType, RootState, unknown, Action<string>>;

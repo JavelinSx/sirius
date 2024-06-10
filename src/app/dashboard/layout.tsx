@@ -1,13 +1,18 @@
-import { Menu } from '../components/Dashboard/Menu/Menu';
-import { Profile } from '../components/Dashboard/Profile/Profile';
+'use client';
+import type { ReactNode } from 'react';
+import { Menu } from '@/src/app/components/Dashboard/Menu/Menu';
+import { UserPanel } from '@/src/app/components/Dashboard/UserPanel/UserPanel';
 import styles from './styles.module.scss';
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+interface Props {
+  readonly children: ReactNode;
+}
+export default function DashboardLayout({ children }: Props) {
   return (
     <section className={styles.dashboard}>
       <Menu></Menu>
       <div className={styles.dashboardContent}>
-        <Profile></Profile>
-        {children}
+        <UserPanel></UserPanel>
+        <div className={styles.mainBoard}>{children}</div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 .checkboxLabel {
-  @apply flex items-center cursor-pointer relative text-xs text-grey-400 mt-3;
+  @apply flex items-center cursor-pointer relative text-xs text-gray-400 mt-3;
 }
 
 .checkboxFake {
@@ -8,12 +8,11 @@
 
 .checkbox,
 .checkboxActive {
-  @apply flex items-center justify-center w-5 h-5 border-2 border-solid rounded  mr-2;
-  background-color: white;
+  @apply flex items-center justify-center w-5 h-5 border-2 border-solid rounded  mr-2 bg-white;
 }
 
 .checkbox {
-  @apply border-grey-400;
+  @apply border-gray-400;
 }
 
 .checkboxActive {

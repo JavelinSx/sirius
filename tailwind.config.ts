@@ -15,6 +15,7 @@ const config: Config = {
       inherit: colors.inherit,
       white: colors.white,
       black: colors.black,
+      red: '#E84849',
       gray: {
         50: '#FDFDFF',
         200: '#ECECEC',
@@ -44,7 +45,7 @@ const config: Config = {
         'dashboard': '30px'
       },
       boxShadow: {
-        'custom-button': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Пример кастомного box-shadow
+        'custom': '0 4px 6px -1px rgba(143, 143, 183, 0.1), 0 2px 4px -1px rgba(143, 143, 183, 0.06)',
       },
       transitionDuration: {
         DEFAULT: '300ms', // Заменяем стандартное значение transition-duration

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+import { User } from '../users/usersSlice';
 interface LoginResponse {
-  message: string;
+  user: User;
 }
 
 interface LoginRequest {
@@ -9,25 +9,29 @@ interface LoginRequest {
   password: string;
   rememberMe: boolean;
 }
+interface LogoutRequest {
+  email: string;
+}
 
 export const authApiSlice = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
   endpoints: (builder) => ({
-    email: builder.mutation<LoginResponse, LoginRequest>({
+    login: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
         url: 'auth',
         method: 'POST',
         body: credentials,
       }),
     }),
-    logout: builder.mutation<LoginResponse, void>({
-      query: () => ({
+    logout: builder.mutation<LoginResponse, LogoutRequest>({
+      query: (email) => ({
         url: 'logout',
         method: 'POST',
+        body: email,
       }),
     }),
   }),
 });
 
-export const { useEmailMutation, useLogoutMutation } = authApiSlice;
+export const { useLoginMutation, useLogoutMutation } = authApiSlice;

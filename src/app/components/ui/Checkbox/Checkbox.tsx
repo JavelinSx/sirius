@@ -1,18 +1,18 @@
 'use client';
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, useState, FC } from 'react';
 import styles from './styles.module.scss';
 import Image from 'next/image';
 import checkMark from '@/public/solid_check.png';
-import { useAppSelector } from '@/src/lib/hooks';
-import { selectRememberMe } from '@/src/lib/features/auth/authSlice';
 
 interface CheckboxProps {
   label: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Checkbox: FC<CheckboxProps> = ({ label, onChange }) => {
-  const checked = useAppSelector(selectRememberMe);
+export const Checkbox: FC<CheckboxProps> = ({ label }) => {
+  const [checked, setChecked] = useState(false);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+  };
   return (
     <label className={styles.checkboxLabel}>
       <input
@@ -20,7 +20,7 @@ export const Checkbox: FC<CheckboxProps> = ({ label, onChange }) => {
         type='checkbox'
         className={styles.checkboxFake}
         checked={checked}
-        onChange={onChange}
+        onChange={handleChange}
       />
       <span className={checked ? styles.checkboxActive : styles.checkbox}>
         <Image src={checkMark} alt='mark' className={checked ? styles.checkMark : styles.checkMarkHidden} />

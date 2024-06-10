@@ -1,5 +1,5 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-export const Dashboard:FC = () => {
-    return()
-}
+export const Dashboard: FC = () => {
+  return <></>;
+};

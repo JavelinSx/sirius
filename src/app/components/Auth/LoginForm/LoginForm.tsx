@@ -1,46 +1,52 @@
 'use client';
-import { ChangeEvent, FormEvent, FC, useCallback } from 'react';
+import { FormEvent, FC, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
+import { useLoginMutation } from '@/src/lib/features/auth/authApiSlice';
+import { selectDictionary } from '@/src/lib/features/appSlice';
+import { setUser } from '@/src/lib/features/users/usersSlice';
+import { setCurrentProfile } from '@/src/lib/features/appSlice';
 import styles from './styles.module.scss';
 import { Input } from '../../ui/Input/Input';
 import { Checkbox } from '../../ui/Checkbox/Checkbox';
 import { Button } from '../../ui/Button/Button';
 import { AccessoryAuthLink } from '../AccessoryAuthLink/AccessoryAuthLink';
-import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
-import {
-  selectEmail,
-  selectPassword,
-  selectRememberMe,
-  setEmail,
-  setPassword,
-  setRememberMe,
-} from '@/src/lib/features/auth/authSlice';
-import { selectDictionary } from '@/src/lib/features/appSlice';
 
-interface LoginFormProps {
-  isButtonDisabled: boolean;
-  onSubmit: (e: FormEvent) => void;
-}
+interface LoginFormProps {}
 
-export const LoginForm: FC<LoginFormProps> = ({ isButtonDisabled, onSubmit }) => {
+export const LoginForm: FC<LoginFormProps> = () => {
   const dictionary = useAppSelector(selectDictionary);
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const [loginMutation, { isLoading }] = useLoginMutation();
 
-  const handleCheckboxChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(setRememberMe(e.target.checked));
-    },
-    [dispatch]
-  );
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const rememberMe = formData.has('rememberMe');
+
+    try {
+      const result = await loginMutation({ email, password, rememberMe }).unwrap();
+
+      dispatch(setUser([result.user]));
+      dispatch(setCurrentProfile(result.user));
+      router.push('/dashboard/home');
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.inputContainer}>
         <Input type='email' name='email' placeholder={dictionary.auth.email} required={true} />
         <Input type='password' name='password' placeholder={dictionary.auth.password} required={true} />
-        <Checkbox label={dictionary.auth.rememberMe} onChange={handleCheckboxChange} />
+        <Checkbox label={dictionary.auth.rememberMe} />
       </div>
       <div>
-        <Button type='submit' text={dictionary.auth.login} status={isButtonDisabled} />
+        <Button type='submit' text={dictionary.auth.login} status={isLoading} />
         <AccessoryAuthLink />
       </div>
     </form>

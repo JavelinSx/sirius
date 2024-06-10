@@ -2,8 +2,7 @@
 import type { ReactNode } from 'react';
 import { StoreProvider } from './StoreProvider';
 import './styles/globals.css';
-import { i18n, Locale } from './i18n-config';
-import { useEffect } from 'react';
+import type { Locale } from '@/i18n-config';
 
 interface Props {
   readonly children: ReactNode;

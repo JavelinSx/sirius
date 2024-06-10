@@ -1,0 +1,35 @@
+.profileList {
+  @apply absolute top-[68px] right-[50px]  w-[250px] bg-white border-[1px] border-violet-400 rounded-[12px] flex flex-col p-[30px] text-blue-800;
+}
+.profileListContainer {
+  @apply mb-[12px];
+}
+.profileListItem {
+  &.active {
+    @apply bg-violet-100;
+  }
+  @apply flex flex-row items-center rounded-[12px] w-full p-[8px] cursor-pointer;
+}
+.currentProfile {
+}
+.profileAvatar {
+  @apply mr-[8px];
+}
+.profileName {
+  @apply text-[12px];
+}
+.profileCurrent {
+  @apply text-[10px] font-light;
+}
+.profileLogout {
+  @apply flex flex-row justify-between items-center mt-[12px];
+}
+.close {
+  @apply absolute top-[12px] right-[12px];
+}
+.arrowFill {
+  @apply absolute top-[-9px] right-[37px];
+}
+.profileTitle {
+  @apply leading-[22px] pb-[12px];
+}

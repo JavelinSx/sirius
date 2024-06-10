@@ -9,6 +9,6 @@
   align-self: flex-start;
   @apply bg-blue-200 text-blue-800 transition;
   &:hover {
-    @apply shadow-custom-button;
+    @apply shadow-custom;
   }
 }
