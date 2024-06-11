@@ -1,9 +1,10 @@
 {
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "npm run build && npm run export && gh-pages -d out"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.0",
@@ -14,7 +15,6 @@
     "next": "latest",
     "next-i18next": "^15.3.0",
     "react": "^18.2.0",
-    "react-calendar": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.1.2",
     "react-icons": "^5.2.1",
@@ -28,6 +28,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.3.3"
