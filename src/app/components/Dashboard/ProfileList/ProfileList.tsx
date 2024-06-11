@@ -51,9 +51,7 @@ export const ProfileList: FC = () => {
 
   const logout = async () => {
     try {
-      const result = await logoutMutation({ email: currentProfile.email }).unwrap();
-      console.log(result);
-
+      await logoutMutation({ email: currentProfile.email }).unwrap();
       // Удаление пользователя из списка
       dispatch(deleteUser(currentProfile));
 
@@ -61,8 +59,10 @@ export const ProfileList: FC = () => {
       const remainingUsers = users.filter((user) => user.email !== currentProfile.email);
       if (remainingUsers) {
         dispatch(setProfileAfterLogout({ currentProfile, remainingUsers }));
+        router.push('/dashboard/home');
+      } else {
+        router.push('/');
       }
-      router.push('/');
     } catch (error) {
       console.error('Failed to logout:', error);
     }

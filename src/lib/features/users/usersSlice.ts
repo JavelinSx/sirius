@@ -20,7 +20,7 @@ export const usersSlice = createAppSlice({
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<User[]>) {
-      const findUser = state.users.map((user) => action.payload.map((userCheck) => user.email === userCheck.email));
+      const findUser = state.users.some((user) => action.payload.some((userCheck) => user.email === userCheck.email));
       if (!findUser) {
         state.users = [...state.users, ...action.payload];
       } else {
@@ -28,7 +28,9 @@ export const usersSlice = createAppSlice({
       }
     },
     deleteUser(state, action: PayloadAction<User>) {
+      console.log('Deleting user with name:', action.payload.name);
       state.users = state.users.filter((user) => user.name !== action.payload.name);
+      console.log('Updated users list:', state.users);
     },
   },
   selectors: {
