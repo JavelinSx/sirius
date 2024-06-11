@@ -1,8 +1,8 @@
 import CustomCalendar from '@/src/app/components/Schedule/CustomCalendar/CustomCalendar';
-
+import styles from './styles.module.scss';
 export default function Schedule() {
   return (
-    <div className='pr-[50px] w-full w-max-[1071px]'>
+    <div className={styles.schedule}>
       <CustomCalendar></CustomCalendar>
     </div>
   );
