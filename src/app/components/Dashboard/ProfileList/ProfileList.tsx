@@ -1,4 +1,5 @@
-import { FC } from 'react';
+'use client';
+import { FC, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import avatarAnna from '@/public/avatar/avatar-anna.svg';
 import avatarMiha from '@/public/avatar/avatar-miha.svg';
@@ -21,13 +22,21 @@ import { User, selectUsers, deleteUser } from '@/src/lib/features/users/usersSli
 import { useLogoutMutation } from '@/src/lib/features/auth/authApiSlice';
 
 import { Divider } from '../../ui/Divider/Divider';
+import { useRouter } from 'next/navigation';
 
 export const ProfileList: FC = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectStateProfileList);
   const users = useAppSelector(selectUsers);
   const currentProfile = useAppSelector(selectCurrentProfile);
+  const router = useRouter();
   const [logoutMutation, { isLoading }] = useLogoutMutation();
+
+  // Устранение ошибки гидратации
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handlerClose = () => {
     dispatch(setStateProfileList());
@@ -48,16 +57,18 @@ export const ProfileList: FC = () => {
       // Удаление пользователя из списка
       dispatch(deleteUser(currentProfile));
 
-      // Назначение нового текущего профиля
+      //Поиск и Назначение нового текущего профиля
       const remainingUsers = users.filter((user) => user.email !== currentProfile.email);
-      dispatch(setProfileAfterLogout({ currentProfile, remainingUsers }));
-
-      // Обработка успешного выхода, например, редирект на страницу входа
-      // Пример: window.location.href = '/login';
+      if (remainingUsers) {
+        dispatch(setProfileAfterLogout({ currentProfile, remainingUsers }));
+      }
+      router.push('/');
     } catch (error) {
       console.error('Failed to logout:', error);
     }
   };
+
+  if (!mounted) return null;
 
   return isOpen ? (
     <div className={styles.profileList}>

@@ -1,6 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { listUsers } from '../listUsers';
+
 export async function POST(request: NextRequest) {
   const body: { email: string; password: string; rememberMe: boolean } = await request.json();
   const { email, password, rememberMe } = body;
@@ -12,10 +13,10 @@ export async function POST(request: NextRequest) {
   if (user && password === 'test') {
     const response = NextResponse.json({ user }, { status: 200 });
 
-    response.cookies.set(user.email, 'test', {
+    response.cookies.set(`user_${user.email}`, 'test', {
       httpOnly: true,
       path: '/',
-      maxAge: rememberMe ? 60 * 60 * 24 * 7 : 60 * 60,
+      maxAge: 60 * 60 * 24 * 7, // 1 week or session cookie
     });
 
     return response;

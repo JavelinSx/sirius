@@ -29,7 +29,7 @@ export const LoginForm: FC<LoginFormProps> = () => {
 
     try {
       const result = await loginMutation({ email, password, rememberMe }).unwrap();
-
+      console.log(result);
       dispatch(setUser([result.user]));
       dispatch(setCurrentProfile(result.user));
       router.push('/dashboard/home');

@@ -3,6 +3,35 @@
 @tailwind utilities;
 @import url(./fonts/fonts.css);
 
+@layer utilities {
+  /* .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #eeeeee transparent;
+  } */
+
+  .scrollbar::-webkit-scrollbar {
+    width: 4px;
+    /* Ширина скролбара */
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    /* Прозрачная полоса прокрутки */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #eeeeee;
+    /* Цвет ползунка */
+    border-radius: 6px;
+    /* Скругленные края ползунка */
+  }
+
+  .scrollbar::-webkit-scrollbar-button {
+    display: none;
+    /* Убрать стрелки вверх-вниз */
+  }
+}
+
 html,
 body {
   min-height: 100vh;

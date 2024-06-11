@@ -1,3 +1,6 @@
 .userPanelContainer {
-  @apply relative flex flex-row items-center justify-end w-full h-[68px] shadow-custom rounded-b-3xl shadow-custom;
+  @apply relative flex flex-row items-center justify-between w-full h-[68px] shadow-custom rounded-b-3xl shadow-custom;
+}
+.userPanelTitle {
+  @apply ml-[32px] text-[24px] text-center;
 }

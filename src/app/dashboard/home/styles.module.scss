@@ -1,0 +1,133 @@
+.home {
+  @apply flex flex-wrap gap-[20px];
+}
+.banner {
+  @apply relative overflow-hidden bg-violet-800 gap-3 rounded-dashboard  flex flex-col items-start justify-center w-full max-w-[526px] h-[248px] pl-[40px] text-white;
+  .bannerTitle {
+    @apply text-[32px] w-[366px] leading-8;
+  }
+  .bannerText {
+    @apply w-[294px] font-circle-rounded-light leading-5;
+  }
+  .bannerImg {
+    @apply absolute bottom-0 right-0 z-0;
+  }
+}
+.timer {
+  @apply flex flex-col items-center justify-center bg-yellow-400 rounded-dashboard text-blue-800 gap-[20px] pt-8 pb-8 w-full max-w-[344px] h-[248px];
+  .timerTitle {
+    @apply text-xl text-center leading-5 w-[180px];
+  }
+  .timerTime {
+    @apply flex flex-row;
+    .timerBlock {
+      @apply pr-3;
+      .timerTimeBig {
+        @apply inline-block text-4xl leading-9 pr-1;
+      }
+      .timerTimeSmall {
+        @apply inline-block text-[15px];
+      }
+    }
+  }
+  .timerButton {
+    @apply w-[220px] h-[48px] rounded-dashboard;
+    .timerButtonDash {
+      @apply rounded-dashboard w-full h-full;
+    }
+  }
+}
+.blockContainer {
+  @apply flex flex-col gap-[20px];
+  .blockText {
+    @apply w-[120px];
+  }
+  .homeWork {
+    @apply flex flex-col justify-between items-start pl-4 pt-4 pb-3 pr-3 w-[162px] h-[114px] rounded-dashboardMin bg-blue-200 text-[20px] leading-[20px] text-left;
+  }
+  .report {
+    @apply flex flex-col justify-between items-start pl-4 pt-4 pb-3 pr-3 w-[162px] h-[114px] rounded-dashboardMin bg-violet-300 text-[20px] leading-[20px] text-left;
+  }
+  .imgContainer {
+    @apply flex self-end items-center justify-center w-[40px] h-[40px] bg-white rounded-dashboardSmall;
+    .img {
+      @apply w-[24px] h-[24px];
+    }
+  }
+}
+.balance {
+  @apply flex flex-col justify-between p-[24px] w-[344px] h-[372px] rounded-dashboard border-[1px] border-violet-800;
+  .title {
+    @apply text-2xl leading-6 mb-4;
+  }
+  .balanceList {
+    @apply h-[198px] w-[312px] overflow-y-auto;
+    .balanceItem {
+      @apply flex flex-row items-center justify-between w-[288px] h-[60px];
+      .balanceItemText {
+        @apply leading-5;
+      }
+      .balanceItemValue {
+        @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-violet-100;
+      }
+    }
+  }
+  .balanceBtn {
+    @apply w-full h-[40px] bg-violet-200 rounded-dashboard mt-[36px];
+  }
+}
+.schedule {
+  @apply flex flex-col items-center justify-center p-[24px] w-[708px] h-[372px] rounded-dashboard border-[1px] border-violet-800;
+  .scheduleTitle {
+    @apply text-[24px] leading-6 mb-4 self-start;
+  }
+  .scheduleButton {
+    @apply h-[40px] w-[344px] bg-violet-200 text-blue-800 rounded-dashboard mt-9;
+  }
+  .scheduleList {
+    @apply w-full flex flex-col gap-1;
+    .scheduleItem {
+      @apply flex items-center justify-between mt-[11px];
+
+      .scheduleItemData {
+        @apply flex flex-col items-center justify-center w-[42px] mr-4;
+
+        .scheduleItemDataDigits {
+          @apply text-[32px] w-[42px] h-[32px] leading-8 text-center;
+        }
+
+        .scheduleItemDataMounth {
+          @apply text-[12px];
+        }
+      }
+      .scheduleItemName {
+        @apply w-[180px] mr-6;
+      }
+
+      .scheduleItemInfo {
+        @apply flex flex-row items-center justify-center;
+        .scheduleItemTime {
+          @apply w-[70px] text-[12px] mr-[6px];
+        }
+
+        .scheduleItemTeacher {
+          @apply w-[119px] font-circle-rounded-light text-[12px];
+        }
+
+        .scheduleItemTeacherAvatar {
+          @apply w-auto h-auto mr-[2px];
+        }
+      }
+
+      .scheduleItemButtonContainer {
+        @apply flex flex-row mr-[40px];
+        .scheduleItemButton {
+          &:nth-child(odd) {
+            @apply w-[56px] h-[32px] rounded-smallButton border-[1px] bg-violet-400 text-xs text-white;
+          }
+          @apply w-[56px] h-[32px] rounded-smallButton border-[1px] border-violet-400 text-xs mr-1;
+        }
+      }
+    }
+  }
+}

@@ -1,15 +1,23 @@
-
-
-import { IconHome, IconAchievement, IconConnection, IconLibrary, IconPayments, IconQuestions, IconSettings, IconShedule, IconTraining } from 'icon-sirius';
+import {
+  IconHome,
+  IconAchievement,
+  IconConnection,
+  IconLibrary,
+  IconPayments,
+  IconQuestions,
+  IconSettings,
+  IconShedule,
+  IconTraining,
+} from 'icon-sirius';
 
 export const MenuList = [
-    { title: 'Home', icon: IconHome, href: '/dashboard/home' },
-    { title: 'Schedule', icon: IconShedule,  href: '/dashboard/schedule' },
-    { title: 'Payment', icon: IconPayments,  href: '/dashboard/payment' },
-    { title: 'Achievement', icon: IconAchievement, href: '/dashboard/achievement' },
-    { title: 'Training', icon: IconTraining,  href: '/dashboard/training' },
-    { title: 'Library', icon: IconLibrary,  href: '/dashboard/library' },
-    { title: 'Check Connection', icon: IconConnection,  href: '/dashboard/check-connection' },
-    { title: 'Settings', icon: IconSettings,  href: '/dashboard/settings' },
-    { title: 'Questions', icon: IconQuestions,  href: '/dashboard/questions' },
-]
+  { title: 'Главная', icon: IconHome, href: '/dashboard/home' },
+  { title: 'Расписание', icon: IconShedule, href: '/dashboard/schedule' },
+  { title: 'Оплата', icon: IconPayments, href: '/dashboard/payment' },
+  { title: 'Достижения', icon: IconAchievement, href: '/dashboard/achievement' },
+  { title: 'Тренажеры', icon: IconTraining, href: '/dashboard/training' },
+  { title: 'Библиотека', icon: IconLibrary, href: '/dashboard/library' },
+  { title: 'Проверка связи', icon: IconConnection, href: '/dashboard/check-connection' },
+  { title: 'Настройки', icon: IconSettings, href: '/dashboard/settings' },
+  { title: 'Вопросы', icon: IconQuestions, href: '/dashboard/questions' },
+];

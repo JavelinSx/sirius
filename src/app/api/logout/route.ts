@@ -7,11 +7,11 @@ export async function POST(request: NextRequest) {
   const { email } = body;
 
   const cookieStore = cookies();
-  const currentUserCookie = cookieStore.get(email);
+  const currentUserCookie = cookieStore.get(`user_${email}`);
 
   if (currentUserCookie) {
     const response = NextResponse.json({ message: 'Logged out' }, { status: 200 });
-    cookieStore.delete(email); // Удаление куки текущего пользователя
+    cookieStore.delete(`user_${email}`); // Удаление куки текущего пользователя
     return response;
   }
 
