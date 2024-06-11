@@ -1,5 +1,5 @@
 'use client';
-
+import type { Locale } from 'i18n-config';
 import { useRouter } from 'next/navigation';
 import { FC, useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
@@ -13,7 +13,7 @@ export const LocaleSwitcher: FC = () => {
   const [activeLocale, setActiveLocale] = useState(lang);
 
   const handleLocaleChange = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>, locale: Locale) => {
+    (e: React.MouseEvent<HTMLSpanElement>, locale: Locale) => {
       e.preventDefault();
       dispatch(setLang(locale));
       setActiveLocale(locale);
