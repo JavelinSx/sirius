@@ -2,7 +2,7 @@ import CustomCalendar from '@/src/app/components/Schedule/CustomCalendar/CustomC
 
 export default function Schedule() {
   return (
-    <div className='pr-[50px] w-full'>
+    <div className='pr-[50px] w-full w-max-[1071px]'>
       <CustomCalendar></CustomCalendar>
     </div>
   );

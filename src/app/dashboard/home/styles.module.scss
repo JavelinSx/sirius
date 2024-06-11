@@ -1,5 +1,5 @@
 .home {
-  @apply flex flex-wrap gap-[20px];
+  @apply flex flex-wrap gap-[20px] w-max-[1071px];
 }
 .banner {
   @apply relative overflow-hidden bg-violet-800 gap-3 rounded-dashboard  flex flex-col items-start justify-center w-full max-w-[526px] h-[248px] pl-[40px] text-white;
