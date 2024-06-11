@@ -7,7 +7,7 @@ interface LoginResponse {
 interface LoginRequest {
   email: string;
   password: string;
-  rememberMe: boolean;
+  remember: string;
 }
 interface LogoutRequest {
   email: string;

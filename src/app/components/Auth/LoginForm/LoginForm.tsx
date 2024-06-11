@@ -1,9 +1,9 @@
 'use client';
-import { FormEvent, FC, useState } from 'react';
+import { FormEvent, FC, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/src/lib/hooks';
 import { useLoginMutation } from '@/src/lib/features/auth/authApiSlice';
-import { selectDictionary } from '@/src/lib/features/appSlice';
+import { selectDictionary, selectRememberMe } from '@/src/lib/features/appSlice';
 import { setUser } from '@/src/lib/features/users/usersSlice';
 import { setCurrentProfile } from '@/src/lib/features/appSlice';
 import styles from './styles.module.scss';
@@ -16,6 +16,7 @@ interface LoginFormProps {}
 
 export const LoginForm: FC<LoginFormProps> = () => {
   const dictionary = useAppSelector(selectDictionary);
+  const rememberMe = useAppSelector(selectRememberMe);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [loginMutation, { isLoading }] = useLoginMutation();
@@ -25,11 +26,11 @@ export const LoginForm: FC<LoginFormProps> = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    const rememberMe = formData.has('rememberMe');
+    const remember = rememberMe.toString();
 
     try {
-      const result = await loginMutation({ email, password, rememberMe }).unwrap();
-      console.log(result);
+      const result = await loginMutation({ email, password, remember }).unwrap();
+
       dispatch(setUser([result.user]));
       dispatch(setCurrentProfile(result.user));
       router.push('/dashboard/home');

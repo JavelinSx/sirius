@@ -10,6 +10,7 @@ interface AppState {
   dictionary: Dictionary;
   isOpenProfileList: boolean;
   currentProfile: User;
+  rememberMe: boolean;
 }
 
 const initialState: AppState = {
@@ -17,6 +18,7 @@ const initialState: AppState = {
   dictionary: getDictionary(i18n.defaultLocale as Locale),
   isOpenProfileList: false,
   currentProfile: {} as User,
+  rememberMe: false,
 };
 
 export const appSlice = createAppSlice({
@@ -38,14 +40,20 @@ export const appSlice = createAppSlice({
       const nextProfile = remainingUsers.find((user) => user.email !== currentProfile.email);
       state.currentProfile = nextProfile || ({} as User);
     },
+    setRememberMe(state, action) {
+      state.rememberMe = action.payload;
+    },
   },
   selectors: {
     selectLang: (state) => state.lang,
     selectDictionary: (state) => state.dictionary,
     selectStateProfileList: (state) => state.isOpenProfileList,
     selectCurrentProfile: (state) => state.currentProfile,
+    selectRememberMe: (state) => state.rememberMe,
   },
 });
 
-export const { setLang, setStateProfileList, setCurrentProfile, setProfileAfterLogout } = appSlice.actions;
-export const { selectLang, selectDictionary, selectStateProfileList, selectCurrentProfile } = appSlice.selectors;
+export const { setLang, setStateProfileList, setCurrentProfile, setProfileAfterLogout, setRememberMe } =
+  appSlice.actions;
+export const { selectLang, selectDictionary, selectStateProfileList, selectCurrentProfile, selectRememberMe } =
+  appSlice.selectors;
